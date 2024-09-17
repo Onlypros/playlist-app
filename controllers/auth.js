@@ -77,4 +77,8 @@ router.post('/sign-in', async (req, res) => {
   }
 });
 
+router.get('/new', async (req, res) => {
+  res.ree
+})
+
 module.exports = router;
