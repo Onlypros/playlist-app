@@ -56,7 +56,9 @@ app.get('/', (req, res) => {
 app.use('/auth', authController); // needed in order for the controllers to work
 app.use(isSignedIn);
 app.use('/playlists', playlistsController); // needed in order for the controllers to work
-app.use('/tracks', tracksController); // needed in order for the controllers to work
+// app.use('/tracks', tracksController); // needed in order for the controllers to work
+// app.use("/books/:bookId/reviews", reviewController);
+app.use("/playlist/:playlistId/tracks", tracksController);
 
 // routes ----------------------------------
 app.get('/users/:userId/playlists', (req, res) => {
