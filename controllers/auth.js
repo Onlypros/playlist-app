@@ -1,22 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-
 const User = require('../models/user.js');
-
 router.get('/sign-up', (req, res) => {
   res.render('auth/sign-up.ejs');
 });
-
 router.get('/sign-in', (req, res) => {
   res.render('auth/sign-in.ejs');
 });
-
 router.get('/sign-out', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
-
 router.post('/sign-up', async (req, res) => {
   try {
     // Check if the username is already taken
@@ -44,7 +39,6 @@ router.post('/sign-up', async (req, res) => {
     res.redirect('/');
   }
 });
-
 router.post('/sign-in', async (req, res) => {
   try {
     // First, get the user from the database
@@ -77,6 +71,7 @@ router.post('/sign-in', async (req, res) => {
   }
 });
 
+module.exports = router;
 router.get('/new', async (req, res) => {
   res.ree
 })

@@ -11,7 +11,8 @@
     <ul>
         <% playlists.forEach(playlist => { %>
             <li>
-                <a href="/playlists/<%= playlist._id %>">
+                <a href="/users/<%= user._id %>/playlists<%= playlist._id %>">
+                <!-- <a href="/playlists/<%= playlist._id %>"> -->
                     Playlist: <%= playlist.name %>
                 </a>
             </li>

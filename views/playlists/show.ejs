@@ -1,11 +1,25 @@
+<!-- views/applications/show.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlist show</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= playlist.title %></title>
 </head>
 <body>
-    <h1> show page </h1>
+  <%- include('../partials/_navbar.ejs') %>
+  <h1><%= playlist.title %> at <%= playlist.company %></h1>
+  <% if (playlist.notes) { %>
+    <p>Notes: <%= playlist.notes %></p>
+  <% } %>
+  <% if (playlist.postingLink) { %>
+    <a href="<%= playlist.postingLink %>">View job posting</a>
+  <% } %>
+  <p>Current Status: <%= playlist.status %></p>
 </body>
 </html>
+
+
+ <!-- fix the show route -->
+<!-- tracks shuould apper on this show page -->

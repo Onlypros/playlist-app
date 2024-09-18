@@ -6,7 +6,7 @@ const User = require('../models/user.js');
 router.get('/new', async (req, res) => {
     res.render('playlists/new.ejs');
   });
- 
+
 router.get('/', async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id);
@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
     res.redirect('/');
   }
 });
-
 
 router.post('/', async (req, res) => {
   try {
