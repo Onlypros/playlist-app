@@ -8,12 +8,12 @@
 <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Create a new playlist</h1>
-    <form action="/playlists" method="POST">
+    <form action="/users/<%= user._id %>/playlists/" method="POST">
         <label for="playlist">Playlist Name</label>
         <input type="text" name="name" id="playlist">
 
         <label for="description">Description</label>
-        <input type="text" name="description" id="description">
+        <textarea name="description" id="description"></textarea>
         <button type="submit">Create Playlist</button>
     </form>
 </body>

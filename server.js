@@ -55,17 +55,18 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authController); // needed in order for the controllers to work
 app.use(isSignedIn);
-app.use('/playlists', playlistsController); // needed in order for the controllers to work
+app.use('/users/:userId/playlists', playlistsController); // needed in order for the controllers to work
 app.use('/tracks', tracksController); // needed in order for the controllers to work
 
-// routes ----------------------------------
-app.get('/users/:userId/playlists', (req, res) => {
-  res.send(`User ID: ${req.params.userId}`);
-});
 
-app.get('/users/:userId/playlists/new', (req, res) => {
-  res.send(`User ID: ${req.params.userId}`);
-});
+// routes ----------------------------------
+// app.post("/tracks", async (req, res) => {
+//   console.log(req.body);
+//   res.redirect("/tracks/new");
+// });
+
+
+
 
 // Starts the server
 app.listen(port, () => {

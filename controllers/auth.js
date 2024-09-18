@@ -64,16 +64,11 @@ router.post('/sign-in', async (req, res) => {
       _id: userInDatabase._id
     };
   
-    res.redirect('/playlists');
+    res.redirect(`/users/${userInDatabase._id}/playlists`);
   } catch (error) {
     console.log(error);
     res.redirect('/');
   }
 });
-
-module.exports = router;
-router.get('/new', async (req, res) => {
-  res.ree
-})
 
 module.exports = router;
