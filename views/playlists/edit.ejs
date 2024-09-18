@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Playlists</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Edit playlist</h1>
+    <form action="/users/<%= user._id %>/playlists/<%= playlist._id %>?_method=PUT" method="POST">
+        <label for="playlist">Playlist Name</label>
+        <input type="text" name="name" id="playlist" value="<%= playlist.name %>">
+
+        <label for="description">Description</label>
+        <textarea name="description" id="description"><%= playlist.description %></textarea>
+        <button type="submit">Edit Playlist</button>
+    </form>
+</body>
+</html>
+
+<!-- _method=PUT: Used to ensure the form sends a PUT request when submitted, which is necessary for updating the playlist. -->

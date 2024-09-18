@@ -8,9 +8,24 @@
 <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Your Playlists</h1>
-    <% playlists.forEach(playlist => { %>
-        <p><%=playlist.name  %></p>
-    <% }) %>
-    <a href="/users/<%=user._id%>/playlists/new">Add a playlist</a>
+    <ul>
+        <% playlists.forEach(playlist => { %>
+            <li>
+                <a href="/users/<%= user._id %>/playlists/<%= playlist._id %>">
+                <!-- <a href="/playlists/<%= playlist._id %>"> -->
+                    Playlist: <%= playlist.name %>
+                </a>
+                <form action="/users/<%= user._id %>/playlists/<%= playlist._id %>/edit" method="GET" style="display: inline;">
+                    <button type="submit">Edit</button>
+                </form>
+                <form action="/users/<%= user._id %>/playlists/<%= playlist._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>    
 </body>
 </html>
+
+<!-- Cannot GET /users/66e9b7dfd2d3f238a83c3526/playlists66ea0c98f8212872a24fbdf7 -->
+<!-- Cannot GET /playlists/66ea27f6d80b5941be316ca4 -->
