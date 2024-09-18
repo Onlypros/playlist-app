@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlist Index</title>
+    <title>Document</title>
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Your Playlists</h1>
+    <h1><%= user.username %>'s Playlists</h1>
     <ul>
         <% playlists.forEach(playlist => { %>
             <li>
-                <a href="/playlists/<%= playlist._id %>">
-                    Playlist: <%= playlist.name %>
-                </a>
+                Playlist: <%= playlist.description %>
+                Tracks: <%= playlist.tracks %>
             </li>
         <% }) %>
     </ul>    

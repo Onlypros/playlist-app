@@ -2,13 +2,13 @@
 const dotenv = require('dotenv'); // requires the package
 dotenv.config(); // Loads the environment variables from .env file
 const express = require('express');
-const app = express();  // what does this do ??
+const app = express();  
 // It’s important that these two lines of code are at the top of this file
 // it ensures that the environment variables are available everywhere across your application.
 const mongoose = require('mongoose'); // you need to require mongoose so that we can use it to connect to our database:
 const methodOverride = require('method-override'); // tricks our express app into thinking that we’ve made PUT and DELETE requests from the browser.
 const morgan = require('morgan'); // The morgan middleware serves as a logging tool for our HTTP requests, providing valuable insights into application behavior.
-const session = require('express-session'); // what does this do??
+const session = require('express-session'); 
 
 // import the controllers so you can use them
 const authController = require('./controllers/auth.js');
@@ -16,7 +16,7 @@ const tracksController = require('./controllers/tracks.js');
 const playlistsController = require('./controllers/playlists.js');
 
 // server config and connection-------------------------------
-const port = process.env.PORT ? process.env.PORT : '3000'; // what does this do??
+const port = process.env.PORT ? process.env.PORT : '3000'; 
 // Connects to MongoDB using the connection string in the .env file
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on('connected', () => {
@@ -40,11 +40,11 @@ app.use(
     resave: false,
     saveUninitialized: true,
   })
-); // what does this do??
+); 
 
 // custom middleware------------------------------------
-const isSignedIn = require('./middleware/is-signed-in.js');
-const passUserToView = require('./middleware/pass-user-to-views.js'); 
+const isSignedIn = require('./middleware/is-signed-in.js'); // must be placed above all routes and controllers
+const passUserToView = require('./middleware/pass-user-to-views.js'); // must be placed above all routes and controllers
 app.use(passUserToView); // Custom middleware
 
 app.get('/', (req, res) => {
@@ -54,15 +54,9 @@ app.get('/', (req, res) => {
 }); // loads the landing page
 
 app.use('/auth', authController); // needed in order for the controllers to work
-// app.use(isSignedIn);
-app.use('/playlists', isSignedIn, playlistsController);
-app.use('/tracks', isSignedIn, tracksController);
-
-// app.use('/playlists', playlistsController); // needed in order for the controllers to work
-// app.use('/tracks', tracksController); // needed in order for the controllers to work
-
-
-
+app.use(isSignedIn);
+app.use('/playlists', playlistsController); // needed in order for the controllers to work
+app.use('/tracks', tracksController); // needed in order for the controllers to work
 
 // routes ----------------------------------
 app.get('/users/:userId/playlists', (req, res) => {
@@ -72,7 +66,6 @@ app.get('/users/:userId/playlists', (req, res) => {
 app.get('/users/:userId/playlists/new', (req, res) => {
   res.send(`User ID: ${req.params.userId}`);
 });
-
 
 // Starts the server
 app.listen(port, () => {
