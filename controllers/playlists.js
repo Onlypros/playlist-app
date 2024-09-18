@@ -8,8 +8,6 @@ router.get('/new', async (req, res) => {
     res.render('playlists/new.ejs');
   });
 
-// controllers/applications.js
-
 router.get('/', async (req, res) => {
   try {
     const user = await User.findById(req.session.user._id);
@@ -36,7 +34,12 @@ router.post('/', async (req, res) => {
 
 // Route to show a specific playlist
 router.get('/:playlistId', async (req, res) => {
-  const user = await User.findById(req.session.user._id);
+  const user = await User.findById(req.session.user._id).populate({
+    path:'playlists', 
+    populate:{
+      path:'tracks',
+    }
+  });
   try {
     // Look up the user from req.session and populate tracks
     const playlist = user.playlists.id(req.params.playlistId);

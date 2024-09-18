@@ -58,14 +58,7 @@ app.use(isSignedIn);
 app.use('/users/:userId/playlists', playlistsController); // needed in order for the controllers to work
 app.use('/tracks', tracksController); // needed in order for the controllers to work
 
-
-// routes ----------------------------------
-// app.post("/tracks", async (req, res) => {
-//   console.log(req.body);
-//   res.redirect("/tracks/new");
-// });
-
-
+// routes--------------
 
 
 // Starts the server
