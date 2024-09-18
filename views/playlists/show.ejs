@@ -11,10 +11,12 @@
     <p><%= playlist.description %></p>
     <% playlist.tracks.forEach(track => { %>
      <p><%= track.trackName %></p>
+     <form action="/tracks/<%= track._id %>/remove/<%= playlist._id %>?_method=DELETE" method="POST" style="display: inline;">
+        <button type="submit">Remove Track</button>
+    </form>
     <% }) %>
     <form action="/tracks/add/<%= playlist._id %>?_method=PUT" method="POST">
         <select name="trackId" id="tracks">
-    
         <% tracks.forEach(showTracks => { %>
             <option value="<%=showTracks._id  %>">Artist Name: <%= showTracks.artistName %> Track Name: <%= showTracks.trackName %></option>
         <% }) %>

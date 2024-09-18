@@ -12,6 +12,7 @@ const playlistSchema = new mongoose.Schema({
   tracks: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Track',
+    // unique: true,
   }]
 });    
 
