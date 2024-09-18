@@ -9,12 +9,23 @@
   <%- include('../partials/_navbar.ejs') %>
     <h1><%= playlist.name %></h1>
     <p><%= playlist.description %></p>
-    <% playlist.tracks.forEach(track => { %>
-     <p><%= track.trackName %></p>
-     <form action="/tracks/<%= track._id %>/remove/<%= playlist._id %>?_method=DELETE" method="POST" style="display: inline;">
-        <button type="submit">Remove Track</button>
-    </form>
-    <% }) %>
+    <table>
+        <tr>
+            <th>Artist:</th>
+            <th>Track Name:</th>
+            <th>Remove:</th>
+        </tr>
+        <% playlist.tracks.forEach(track => { %>
+            <tr>
+                <td><p><%= track.artistName %></p></td>
+                <td><p><%= track.trackName %></p></td>
+                <td><form action="/tracks/<%= track._id %>/remove/<%= playlist._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit">Remove Track</button>
+                </form></td>
+            </tr>
+        <% }) %>
+    </table>
+    
     <form action="/tracks/add/<%= playlist._id %>?_method=PUT" method="POST">
         <select name="trackId" id="tracks">
         <% tracks.forEach(showTracks => { %>
