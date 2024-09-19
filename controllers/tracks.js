@@ -5,7 +5,7 @@ const Track = require('../models/track.js');
 const User = require('../models/user.js');
 
 router.get('/new', async (req, res) => {
-    res.render('tracks/new.ejs');
+    res.render('tracks/new.ejs', {successMessage});
   });
 
 router.post("/", async (req, res) => {
@@ -52,8 +52,6 @@ router.delete('/:trackId/remove/:playlistId', async (req, res) => {
         res.redirect(`/users/${user._id}/playlists/${playlist._id}`);
     }
 })
-
-
 
 module.exports = router;
 // exports your routers for use in server.js

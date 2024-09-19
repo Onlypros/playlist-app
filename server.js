@@ -32,6 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 // ^^ Remember, app.use allows us to plug additional functionality into express. It basically extends the capabilities of our app.
 app.use(methodOverride('_method')); // uses method override package for full CRUD actions
 app.use(morgan('dev')); // logs database responses 
+app.use(express.static('public'));
 
 // Session middleware should be initialized before any other custom middleware
 app.use(
