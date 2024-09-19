@@ -5,7 +5,7 @@ const Track = require('../models/track.js');
 const User = require('../models/user.js');
 
 router.get('/new', async (req, res) => {
-    res.render('tracks/new.ejs', {successMessage});
+    res.render('tracks/new.ejs');
   });
 
 router.post("/", async (req, res) => {

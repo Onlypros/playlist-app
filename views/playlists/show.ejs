@@ -22,7 +22,7 @@
                 <td><p><%= track.artistName %></p></td>
                 <td><p><%= track.trackName %></p></td>
                 <td><form action="/tracks/<%= track._id %>/remove/<%= playlist._id %>?_method=DELETE" method="POST" style="display: inline;">
-                    <button type="submit">Remove Track</button>
+                    <button class="removetrack" type="submit">Remove Track</button>
                 </form></td>
             </tr>
         <% }) %>

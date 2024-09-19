@@ -10,9 +10,6 @@
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Add a new track</h1>
-    <% if (typeof successMessage !== 'undefined') { %>
-    <p class="success-message"><%= successMessage %></p>
-    <% } %> creates visual confirmation for submitted a track
     <form action="/tracks" method="POST">
       <label for="track">Artist Name</label>
       <input type="text" name="artistName" id="track" />
