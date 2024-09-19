@@ -15,7 +15,7 @@
         <tr>
             <th>Artist:</th>
             <th>Track Name:</th>
-            <th>Remove:</th>
+            <!-- <th>Remove:</th> -->
         </tr>
         <% playlist.tracks.forEach((track, i) => { %>
             <tr>
@@ -23,6 +23,9 @@
                 <td><p><%= track.trackName %></p></td>
                 <td><form action="/tracks/<%= track._id %>/remove/<%= playlist._id %>/<%=i  %>?_method=DELETE" method="POST" style="display: inline;">
                     <button class="removetrack" type="submit">Remove Track</button>
+                </form></td>
+                <td><form action="/tracks/<%= track._id %>/delete/<%= playlist._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button class="removetrack" type="submit">Delete Track</button>
                 </form></td>
             </tr>
         <% }) %>

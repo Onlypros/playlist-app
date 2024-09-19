@@ -55,6 +55,22 @@ router.delete('/:trackId/remove/:playlistId/:index', async (req, res) => {
     }
 })
 
+router.delete('/:trackId/delete/:playlistId', async (req, res) => {
+    const user = await User.findById(req.session.user._id);
+    const playlist = user.playlists.id(req.params.playlistId);
+    const track = await Track.findById(req.params.trackId)
+    try {
+        playlist.tracks.remove(track._id)
+        await user.save();
+        await Track.findByIdAndDelete(track._id);
+        res.redirect(`/users/${user._id}/playlists/${playlist._id}`);
+    } catch (error) {
+        console.log(error)
+        res.redirect(`/users/${user._id}/playlists/${playlist._id}`);
+    }
+})
+
+
 module.exports = router;
 // exports your routers for use in server.js
 
