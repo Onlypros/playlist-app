@@ -14,11 +14,7 @@ const trackSchema = new mongoose.Schema({
         ref: 'Playlist',
     }]
 });
-trackSchema.pre('save', function(next) {
-    // Ensure that the playlists array contains only unique entries
-    this.playlists = [...new Set(this.playlists.map(id => id.toString()))];
-    next();
-});
+
 
 const Track = mongoose.model('Track', trackSchema);
 

@@ -21,9 +21,14 @@ router.post("/", async (req, res) => {
 
   // routes below are for adding tracks into playlists
 router.put('/add/:playlistId', async (req, res) => {
+    console.log(req.session)  
     const user = await User.findById(req.session.user._id);
+    console.log(user, 'user')
     const playlist = user.playlists.id(req.params.playlistId);
+    console.log(playlist, 'playlist')
     const track = await Track.findById(req.body.trackId)
+    console.log(track, 'track')
+    console.log(req.body, 'req.body')
     try {
         playlist.tracks.push(track._id);
         await user.save();

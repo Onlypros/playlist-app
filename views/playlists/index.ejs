@@ -9,7 +9,7 @@
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Your Playlists</h1>
+    <h1><%= user.username %>'s' Playlists</h1>
     <ol>
       <% playlists.forEach(playlist => { %>
       <li>
