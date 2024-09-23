@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// require all essential modules at the top of each controller
 const Track = require('../models/track.js');
 const User = require('../models/user.js');
 
@@ -19,7 +18,6 @@ router.post("/", async (req, res) => {
     }
   });
 
-  // routes below are for adding tracks into playlists
 router.put('/add/:playlistId', async (req, res) => {
     console.log(req.session)  
     const user = await User.findById(req.session.user._id);
@@ -75,8 +73,4 @@ router.delete('/:trackId/delete/:playlistId', async (req, res) => {
     }
 })
 
-
 module.exports = router;
-// exports your routers for use in server.js
-
-// tracks refernce the fruti lesson
