@@ -9,12 +9,12 @@
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Add a new track, <%= user.username %></h1>
+    <h1><%= user.username %>:  Add new tracks </h1>
     <form action="/tracks" method="POST">
       <label for="track">Artist Name</label>
       <input type="text" name="artistName" id="track" />
       <label for="trackname">Track Name</label>
-      <input type="text" name="trackName" id="trackname" />
+      <input type="text" name="trackName" id="trackname" placeholder="track name"/>
       <button type="submit">Create Track</button>
     </form>
   </body>

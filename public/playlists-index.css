@@ -8,3 +8,8 @@ button {
     width: 100%;
     margin-top: 3px;
   }
+
+  .playlist-name {
+    color: rgb(0, 128, 255);
+    text-decoration: none;
+}

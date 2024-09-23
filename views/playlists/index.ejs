@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Playlist Index</title>
+    <title>Your Playlists</title>
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/playlists-index.css" />
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1><%= user.username %>'s' Playlists</h1>
+    <h1><%= user.username %>: Playlists</h1>
     <ol>
       <% playlists.forEach(playlist => { %>
       <li>

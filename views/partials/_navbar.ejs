@@ -3,8 +3,8 @@
     <a href="/">Home</a>
     <% if(user) { %>
     <a href="/users/<%= user._id %>/playlists">Your Playlists</a>
-    <a href="/users/<%= user._id %>/playlists/new">Make a Playlist</a>
-    <a href="/tracks/new">Make a Track</a>
+    <a href="/users/<%= user._id %>/playlists/new">Create Playlists</a>
+    <a href="/tracks/new">Add Tracks</a>
     <a href="/auth/sign-out">Sign Out</a>
     <% } else { %>
     <a href="/auth/sign-up">Sign Up</a>
