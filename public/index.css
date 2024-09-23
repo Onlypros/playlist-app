@@ -1,0 +1,14 @@
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.sign-in {
+    color: rgb(0, 128, 255);
+    text-decoration: none;
+}
+

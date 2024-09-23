@@ -11,9 +11,10 @@ const trackSchema = new mongoose.Schema({
     },
     playlists: [{ 
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Playlist' 
+        ref: 'Playlist',
     }]
 });
+
 
 const Track = mongoose.model('Track', trackSchema);
 

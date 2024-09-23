@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Playlists</title>
-</head>
-<body>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/playlists-new.css" />
+  </head>
+  <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Create a new playlist</h1>
+    <h1><%= user.username %>: Create new playlists</h1>
     <form action="/users/<%= user._id %>/playlists/" method="POST">
-        <label for="playlist">Playlist Name</label>
-        <input type="text" name="name" id="playlist">
+      <label for="playlist">Playlist Name</label>
+      <input type="text" name="name" id="playlist" />
 
-        <label for="description">Description</label>
-        <textarea name="description" id="description"></textarea>
-        <button type="submit">Create Playlist</button>
+      <label for="description">Description</label>
+      <textarea name="description" id="description"></textarea>
+      <button type="submit">Create Playlist</button>
     </form>
-</body>
+  </body>
 </html>

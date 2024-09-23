@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// require all essential modules at the top of each controller
 const User = require('../models/user.js');
 const Track = require('../models/track.js');
 
@@ -32,7 +31,6 @@ router.post('/', async (req, res) => {
   }
 })
 
-// Route to show a specific playlist
 router.get('/:playlistId', async (req, res) => {
   const user = await User.findById(req.session.user._id).populate({
     path:'playlists', 
@@ -41,31 +39,26 @@ router.get('/:playlistId', async (req, res) => {
     }
   });
   try {
-    // Look up the user from req.session and populate tracks
     const playlist = user.playlists.id(req.params.playlistId);
     const tracks = await Track.find({});
     console.log(tracks)
-    // Render the show view, passing the playlist data
     res.render('playlists/show.ejs', {
       playlist: playlist,
       tracks: tracks,
-      user: req.session.user,  // Ensure you pass the user to the view
+      user: req.session.user,  
     });
   } catch (error) {
     console.log(error);
     res.redirect(`/users/${user._id}/playlists`);
   }
-}); // This code defines a route to handle GET requests to /playlists/:playlistId. 
-// It retrieves the playlist by its ID and renders the show.ejs page with the playlist data.
+}); 
 
 router.delete('/:playlistId', async (req, res) => {
-  const user = await User.findById(req.session.user._id); // Find the user by session ID
+  const user = await User.findById(req.session.user._id); 
   try {
-    const playlist = user.playlists.id(req.params.playlistId); // Find the playlist by ID and remove it
+    const playlist = user.playlists.id(req.params.playlistId); 
     if (playlist) {
-    // removes the playlist
       user.playlists.remove(req.params.playlistId);
-    // saves the changes made
       await user.save();
       res.redirect(`/users/${user._id}/playlists`);
     } else {
@@ -78,20 +71,20 @@ router.delete('/:playlistId', async (req, res) => {
 });
 
 router.get('/:playlistId/edit', async (req, res) => {
-  const user = await User.findById(req.session.user._id); // Find the user by session ID
+  const user = await User.findById(req.session.user._id); 
   try {
     if (!user) {
       return res.status(404).send('User not found');
-    } // check to see if the user exists. If it's not found, return a 404 error.
+    } 
 
-    const playlist = user.playlists.id(req.params.playlistId); // Find the playlist by ID and remove it
+    const playlist = user.playlists.id(req.params.playlistId); 
     if (!playlist) {
       return res.status(404).send('Playlist not found');
-    } // check to see if the playlist exists. If it's not found, return a 404 error.
+    } 
     
     res.render('playlists/edit.ejs', {
       playlist: playlist,
-      user: user // Use the full user object from the database
+      user: user 
     });
   } catch (error) {
     console.log(error);
@@ -100,9 +93,9 @@ router.get('/:playlistId/edit', async (req, res) => {
 });
 
 router.put('/:playlistId', async (req, res) => {
-  const user = await User.findById(req.session.user._id); // Find the user by session ID
+  const user = await User.findById(req.session.user._id); 
   try {
-    const playlist = user.playlists.id(req.params.playlistId); // Find the playlist by ID and remove it
+    const playlist = user.playlists.id(req.params.playlistId); 
   playlist.set(req.body);
   await user.save();
   res.redirect(`/users/${user._id}/playlists/${playlist._id}`);
@@ -113,4 +106,3 @@ router.put('/:playlistId', async (req, res) => {
 })
 
 module.exports = router;
-// exports your routers for use in server.js

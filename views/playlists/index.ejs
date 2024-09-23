@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlist Index</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Playlists</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/playlists-index.css" />
+  </head>
+  <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Your Playlists</h1>
-    <ul>
-        <% playlists.forEach(playlist => { %>
-            <li>
-                <a href="/users/<%= user._id %>/playlists/<%= playlist._id %>">
-                <!-- <a href="/playlists/<%= playlist._id %>"> -->
-                    Playlist: <%= playlist.name %>
-                </a>
-                <form action="/users/<%= user._id %>/playlists/<%= playlist._id %>/edit" method="GET" style="display: inline;">
-                    <button type="submit">Edit</button>
-                </form>
-                <form action="/users/<%= user._id %>/playlists/<%= playlist._id %>?_method=DELETE" method="POST" style="display: inline;">
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-        <% }) %>
-    </ul>    
-</body>
+    <h1><%= user.username %>: Playlists</h1>
+    <ol>
+      <% playlists.forEach(playlist => { %>
+      <li>
+        <a
+          class="playlist-name"
+          href="/users/<%= user._id %>/playlists/<%= playlist._id %>"
+        >
+          Playlist: <%= playlist.name %>
+        </a>
+        <form
+          action="/users/<%= user._id %>/playlists/<%= playlist._id %>/edit"
+          method="GET"
+          style="display: inline"
+        >
+          <div class="playlistsindexbuttons">
+            <button type="submit">Edit</button>
+          </div>
+        </form>
+        <form
+          action="/users/<%= user._id %>/playlists/<%= playlist._id %>?_method=DELETE"
+          method="POST"
+          style="display: inline"
+        >
+          <div class="playlistsindexbuttons">
+            <button type="submit">Delete</button>
+          </div>
+        </form>
+      </li>
+      <% }) %>
+    </ol>
+  </body>
 </html>
-
-<!-- Cannot GET /users/66e9b7dfd2d3f238a83c3526/playlists66ea0c98f8212872a24fbdf7 -->
-<!-- Cannot GET /playlists/66ea27f6d80b5941be316ca4 -->

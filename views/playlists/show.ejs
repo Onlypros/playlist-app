@@ -1,28 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= playlist.title %></title>
-</head>
-<body>
-  <%- include('../partials/_navbar.ejs') %>
-    <h1><%= playlist.name %></h1>
-    <p><%= playlist.description %></p>
-    <% playlist.tracks.forEach(track => { %>
-     <p><%= track.trackName %></p>
-    <% }) %>
-    <form action="/tracks/add/<%= playlist._id %>?_method=PUT" method="POST">
-        <select name="trackId" id="tracks">
-    
-        <% tracks.forEach(showTracks => { %>
-            <option value="<%=showTracks._id  %>">Artist Name: <%= showTracks.artistName %> Track Name: <%= showTracks.trackName %></option>
-        <% }) %>
-        </select>
-        <button type="submit">Add Tracks</button>   
-    </form>
-</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= playlist.title %></title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/playlists-show.css" />
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Playlist Name: <%= playlist.name %></h1>
+    <p>Playlist Description: <%= playlist.description %></p>
+    <table>
+      <tr>
+        <th>Artist:</th>
+        <th>Track Name:</th>
+      </tr>
+      <% playlist.tracks.forEach((track, i) => { %>
+      <tr>
+        <td><p><%= track.artistName %></p></td>
+        <td><p><%= track.trackName %></p></td>
+        <td>
+          <form
+            action="/tracks/<%= track._id %>/remove/<%= playlist._id %>/<%=i  %>?_method=DELETE"
+            method="POST"
+            style="display: inline"
+          >
+            <button class="removetrack" type="submit">Remove Track</button>
+          </form>
+        </td>
+        <td>
+          <form
+            action="/tracks/<%= track._id %>/delete/<%= playlist._id %>?_method=DELETE"
+            method="POST"
+            style="display: inline"
+          >
+            <button class="removetrack" type="submit">Delete Track</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
 
- <!-- fix the show route -->
-<!-- tracks shuould apper on this show page -->
+    <form action="/tracks/add/<%= playlist._id %>?_method=PUT" method="POST">
+      <select name="trackId" id="tracks">
+        <% tracks.forEach(showTracks => { %>
+        <option value="<%=showTracks._id  %>">
+          Artist Name: <%= showTracks.artistName %> Track Name: <%=
+          showTracks.trackName %>
+        </option>
+        <% }) %>
+      </select>
+      <button type="submit">Add Tracks</button>
+    </form>
+  </body>
+</html>

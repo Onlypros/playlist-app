@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// require all essential modules at the top of each controller
 const Track = require('../models/track.js');
 const User = require('../models/user.js');
 
@@ -19,11 +18,15 @@ router.post("/", async (req, res) => {
     }
   });
 
-  // routes below are for adding tracks into playlists
 router.put('/add/:playlistId', async (req, res) => {
+    console.log(req.session)  
     const user = await User.findById(req.session.user._id);
+    console.log(user, 'user')
     const playlist = user.playlists.id(req.params.playlistId);
+    console.log(playlist, 'playlist')
     const track = await Track.findById(req.body.trackId)
+    console.log(track, 'track')
+    console.log(req.body, 'req.body')
     try {
         playlist.tracks.push(track._id);
         await user.save();
@@ -36,9 +39,38 @@ router.put('/add/:playlistId', async (req, res) => {
     }
 });
 
+router.delete('/:trackId/remove/:playlistId/:index', async (req, res) => {
+    const user = await User.findById(req.session.user._id);
+    const playlist = user.playlists.id(req.params.playlistId);
+    const track = await Track.findById(req.params.trackId)
+    const index = req.params.index
+    try {
+        playlist.tracks.splice(index, 1);
+        await user.save();
+        if (!playlist.tracks.includes(track._id)) {
+            track.playlists.remove(playlist._id);
+            await track.save();
+        }
+        res.redirect(`/users/${user._id}/playlists/${playlist._id}`);
+    } catch (error) {
+        console.log(error)
+        res.redirect(`/users/${user._id}/playlists/${playlist._id}`);
+    }
+})
 
+router.delete('/:trackId/delete/:playlistId', async (req, res) => {
+    const user = await User.findById(req.session.user._id);
+    const playlist = user.playlists.id(req.params.playlistId);
+    const track = await Track.findById(req.params.trackId)
+    try {
+        playlist.tracks.remove(track._id)
+        await user.save();
+        await Track.findByIdAndDelete(track._id);
+        res.redirect(`/users/${user._id}/playlists/${playlist._id}`);
+    } catch (error) {
+        console.log(error)
+        res.redirect(`/users/${user._id}/playlists/${playlist._id}`);
+    }
+})
 
 module.exports = router;
-// exports your routers for use in server.js
-
-// tracks refernce the fruti lesson
