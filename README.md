@@ -15,9 +15,8 @@ Upon arrival at the home screen guests are asked to sign in so they can access t
 <br>- Add any tracks from the song libary into any of their playlists
 
 <p align="center" style="font-size: 24px;">
-  <a href="https://onlypros.github.io/war-card-game/" style="color:light blue; text-decoration:underline;">Project 2 - Music Playlist App</a>
+  <a href="https://unit-2-project-playlist-app-4d7595e04d05.herokuapp.com/" style="color:light blue; text-decoration:underline;">Project 2 - Music Playlist App</a>
 </p> 
-After uploading to the server grab the link and insert it here.
 
 ## Attributions
 
